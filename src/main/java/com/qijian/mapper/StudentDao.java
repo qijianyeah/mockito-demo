@@ -12,16 +12,8 @@ public class StudentDao {
 
     //演示从数据库查询数据
     public Student getById(String id){
-        Student student = new Student();
 
-//        if(id.equals("001")){
-//            student.setId("001");
-//            student.setName("张三");
-//            student.setAge(20);
-//            student.setSex("男");
-//            student.setPhoneNumber("12345678910");
-//        }
-        return student;
+        return null;
     }
 
     //演示从数据库添加数据

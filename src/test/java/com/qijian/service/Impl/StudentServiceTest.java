@@ -1,7 +1,8 @@
 package com.qijian.service.Impl;
 import com.qijian.mapper.StudentDao;
 import com.qijian.po.Student;
-import org.junit.jupiter.api.Assertions;
+//import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -31,33 +32,27 @@ class StudentServiceTest {
         MockitoAnnotations.initMocks(this);
     }
 
+    //不用理会方法中调用的函数结果，mock打桩后可以指定结果返回
     @Test
     public void getById() {
         Student student = new Student();
         student.setId("001");
-//        student.setName("张三");
+        student.setClassNum(01);
         //when里面带的是条件，thenReturn里面表示的是返回结果
         Mockito.when(studentDao.getById("001"))
                 .thenReturn(student);
-        //assertThat后面跟着断言的判断语句
-//        assertThat(studentService.getById(student.getId()).getName())
-//                .isEqualTo("张三");
-//        Assertions.assertEquals(studentService.getById(student.getId()).getName(),"张三");
-
+        Assertions.assertThat(studentService.getById(student.getId()).getClassNum()).isEqualTo(01);
     }
 
     @Test
     public void save() {
         Student student = new Student();
         student.setId("002");
-//        student.setName("李四");
+        student.setDormitoryNum(505);
         //when里面带的是条件，thenReturn里面表示的是返回结果
         Mockito.when(studentDao.save(student))
                 .thenReturn("数据成功添加");
-        //assertThat后面跟着断言的判断语句
-//        assertThat(studentService.save(student))
-//                .isEqualTo("数据成功添加");
-        Assertions.assertEquals(studentService.save(student),"数据成功添加");
+        Assertions.assertThat(studentService.save(student)).isEqualTo("数据成功添加");
 
     }
 }
