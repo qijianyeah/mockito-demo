@@ -1,9 +1,6 @@
 package com.qijian.po;
 
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 /**
  * @author mahuahong
@@ -13,12 +10,13 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Builder
 public class Student {
 
     /**
      * id
      */
-    private String id;
+    private Integer id;
 
     /**
      * 学号
@@ -34,6 +32,11 @@ public class Student {
      * 寝室号
      */
     private Integer dormitoryNum;
+
+    /**
+     * 用户ID
+     */
+    private Integer userId;
 
 
 }

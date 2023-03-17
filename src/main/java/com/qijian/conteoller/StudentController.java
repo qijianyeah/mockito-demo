@@ -16,9 +16,14 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @GetMapping("/getById")
-    public Student getById(@RequestParam("id") String id){
+    @GetMapping("/getById")//http://127.0.0.1:8100/student/getById?id=1
+    public Student getById(@RequestParam("id") Integer id){
         return studentService.getById(id);
+    }
+
+    @GetMapping("/getByNum")//http://127.0.0.1:8100/student/getByNum?num=5005
+    public Student getByNum(@RequestParam("num") String num){
+        return studentService.getByNum(num);
     }
 
     @PostMapping("/save")
