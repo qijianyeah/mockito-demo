@@ -10,7 +10,7 @@
     </select>
 
     <!--    通过id查询,普通的查询的时候知道是一条数据的时候 在后面加入 limit 1 sql执行速度更快-->
-    <select id="getId" parameterType="integer" resultType="com.qijian.po.User">
+    <select id="getById" parameterType="integer" resultType="com.qijian.po.User">
         select *
         from user
         where id = #{id} limit 1

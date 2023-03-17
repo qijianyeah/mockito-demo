@@ -22,13 +22,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public ResponseData<List<User>> listForLessThan(User user){
         if (Objects.isNull(user)){
-            return ResponseData.enrrorWithMeg("error");
+            return ResponseData.errorWithMeg("error");
         }
         if (user.getAge() == null){
-            return ResponseData.enrrorWithMeg("输入的age不能为bull");
+            return ResponseData.errorWithMeg("输入的age不能为bull");
         }
         if (user.getAge() <= 0 || user.getAge() > 120){
-            return ResponseData.enrrorWithMeg("输入的age需要大于0");
+            return ResponseData.errorWithMeg("输入的age需要大于0");
         }
         List<User> userList = userMapper.listForLessThan(user.getAge());
         return ResponseData.ok("成功",userList);
@@ -41,8 +41,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getId(Integer id) {
-        return userMapper.getId(id);
+    public User getById(Integer id) {
+        return userMapper.getById(id);
     }
 
 

@@ -24,7 +24,7 @@ public class ResponseData<T> {
         this.message =message;
     }
 
-    public static <T> ResponseData<T> enrrorWithMeg(String message){
+    public static <T> ResponseData<T> errorWithMeg(String message){
         return new ResponseData<>(500,message);
     }
 

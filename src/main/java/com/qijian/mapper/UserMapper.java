@@ -12,7 +12,7 @@ public interface UserMapper {
 
     List<User> list();
 
-    User getId(Integer id);
+    User getById(Integer id);
 
     Integer add(User user);
 

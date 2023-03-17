@@ -1,6 +1,6 @@
 package com.qijian.service.Impl;
 
-import com.qijian.mapper.StudentDao;
+import com.qijian.mapper.StudentMapper;
 import com.qijian.po.Student;
 import com.qijian.po.User;
 import com.qijian.service.StudentService;
@@ -20,14 +20,14 @@ import java.util.List;
 public class StudentServiceImpl implements StudentService {
 
     @Resource
-    private StudentDao studentDao;
+    private StudentMapper studentMapper;
 
     @Resource
     private UserService userService;
 
     @Override
     public Student getById(Integer id) {
-        Student result = studentDao.getById(id);
+        Student result = studentMapper.getById(id);
         log.info("stu:{}",result);
         return result;
     }
@@ -37,12 +37,12 @@ public class StudentServiceImpl implements StudentService {
      * @return
      */
     public Student getByNum(String num){
-        return studentDao.getByNum(num);
+        return studentMapper.getByNum(num);
     }
 
     @Override
     public String save(Student student) {
-        return studentDao.save(student);
+        return studentMapper.save(student);
     }
 
     @Override

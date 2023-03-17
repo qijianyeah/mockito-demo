@@ -4,12 +4,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 /**
+ * 学生 Mapper 接口实现类
  * @author mahuahong
  * @Date 2023/3/16 23:56
  */
 @Slf4j
 @Repository
-public class StudentDao {
+public class StudentMapper {
 
     //演示从数据库查询数据
     public Student getById(Integer id){
@@ -47,5 +48,7 @@ public class StudentDao {
         }
         return student;
     }
+
+
 }
 

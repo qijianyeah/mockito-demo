@@ -1,5 +1,5 @@
 package com.qijian.service.Impl;
-import com.qijian.mapper.StudentDao;
+import com.qijian.mapper.StudentMapper;
 import com.qijian.po.Student;
 //import org.junit.jupiter.api.Assertions;
 import com.qijian.service.StudentService;
@@ -31,7 +31,7 @@ class StudentServiceTest {
 //    @Spy：对函数的调用均执行真正部分。
     //对函数的调用均执行mock（即虚假函数），不执行真正部分。
     @Mock
-    StudentDao studentDao;
+StudentMapper studentMapper;
 
     @BeforeEach
     void setUp() throws Exception {
@@ -45,7 +45,7 @@ class StudentServiceTest {
         student.setId(001);
         student.setClassNum(01);
         //when里面带的是条件，thenReturn里面表示的是返回结果
-        Mockito.when(studentDao.getById(001))
+        Mockito.when(studentMapper.getById(001))
                 .thenReturn(student);
         Assertions.assertThat(studentService.getById(student.getId()).getClassNum()).isEqualTo(01);
     }
@@ -58,7 +58,7 @@ class StudentServiceTest {
         student.setId(002);
         student.setDormitoryNum(505);
         //when里面带的是条件，thenReturn里面表示的是返回结果
-        Mockito.when(studentDao.save(student))
+        Mockito.when(studentMapper.save(student))
                 .thenReturn("数据成功添加");
         Assertions.assertThat(studentService.save(student)).isEqualTo("数据成功添加");
     }

@@ -17,7 +17,7 @@ public interface UserService {
     //    查询所有
     List<User> list();
     //    通过id查询
-    User getId(Integer id);
+    User getById(Integer id);
 
     //    添加用户
     Boolean add(User user);
