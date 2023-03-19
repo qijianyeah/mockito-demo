@@ -1,6 +1,5 @@
-package com.qijian.mapperr;
+package com.qijian.mapper;
 
-import com.qijian.mapper.UserMapper;
 import com.qijian.po.User;
 import org.junit.Assert;
 import org.junit.Before;
@@ -24,7 +23,7 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @MybatisTest
 @TestPropertySource(properties = {
-        "spring.datasource.schema = classpath:schema-h2.sql"
+        "spring.datasource.schema = classpath:db/schema-h2.sql"
 })
 public class UserMapperTest {
 
@@ -47,14 +46,16 @@ public class UserMapperTest {
     @Test
     public void testList(){
         List<User> list = userMapper.list();
-        Assert.assertEquals(list.size(),6);
+        Assert.assertEquals(list.size(),4);
     }
-
 
     @Test
-    public void testListForLessThan(){
+    public void testgetById(){
+        User result = userMapper.getById(6);
+        Assert.assertEquals(result.getName(),"qijian");
 
     }
+
 
 
 }

@@ -28,7 +28,5 @@ public interface UserService {
     //    通过id删除
     Boolean deleteById(Integer id);
 
-    //    分页查询
-    List<User> pages(Integer index, Integer size, String search);
 
 }
