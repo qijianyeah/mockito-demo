@@ -11,6 +11,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.test.util.ReflectionTestUtils;
+
 
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
@@ -24,14 +26,14 @@ import static org.mockito.Mockito.verify;
 class StudentServiceTest {
 
     //创建一个实例，简单的说是这个Mock可以调用真实代码的方法，
-    // 其余用@Mock（或@Spy）注解创建的mock将被注入到用该实例中。
+    // 其余用@Mock（或@Spy）注解创建的mock将被注入到用该实例中。(此注解表示这个对象需要被注入mock对象)
     @InjectMocks
     StudentServiceImpl studentService;
 
-//    @Spy：对函数的调用均执行真正部分。
-    //对函数的调用均执行mock（即虚假函数），不执行真正部分。
+    //@Spy：对函数的调用均执行真正部分。
+    //对函数的调用均执行mock（即虚假函数），不执行真正部分。(此注解会自动创建1个mock对象并注入到@InjectMocks对象中)
     @Mock
-StudentMapper studentMapper;
+    StudentMapper studentMapper;
 
     @BeforeEach
     void setUp() throws Exception {
@@ -45,7 +47,7 @@ StudentMapper studentMapper;
         student.setId(001);
         student.setClassNum(01);
         //when里面带的是条件，thenReturn里面表示的是返回结果
-        Mockito.when(studentMapper.getById(001))
+        Mockito.when(studentMapper.getById(Mockito.anyInt()))
                 .thenReturn(student);
         Assertions.assertThat(studentService.getById(student.getId()).getClassNum()).isEqualTo(01);
     }
@@ -73,10 +75,10 @@ StudentMapper studentMapper;
     //调用的是当前待测试类的另一个方法(对真实对象打桩，就要用到spy) 使用spy()
     @Test
     public void testMethodB(){
-//        StudentService t = new StudentServiceImpl();
-//        StudentService spyT = spy(t);
+        //StudentService t = new StudentServiceImpl();
+        //StudentService spyT = spy(t);
         StudentService spyT = spy(studentService);
-        //第一次，第二次，第三次调用methodA时，分别返回0，1，2
+        //第一次，第二次 调用methodA时，分别返回0，1，2
         Mockito.when(spyT.methodA()).thenReturn(0,1);
         for(int i=0; i<=1; i++){
             spyT.methodB();
@@ -87,7 +89,12 @@ StudentMapper studentMapper;
         //assert && verify
     }
 
-
+    //私有方法的测试
+    @Test
+    public void testPrivateMethod(){
+        Object result = ReflectionTestUtils.invokeMethod(studentService, "privateMethod", "str1",1);
+        Assertions.assertThat(result).isEqualTo("我是私有方法");
+    }
 
 
 

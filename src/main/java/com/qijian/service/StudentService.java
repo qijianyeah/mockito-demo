@@ -33,11 +33,26 @@ public interface StudentService {
      */
     public void doSomething(Integer StuId);
 
+    /**
+     * method of a
+     * @return
+     */
     public int methodA();
 
+    /**
+     * method of b
+     */
     public void methodB();
 
+    /**
+     * method of c
+     */
     public void methodC();
 
+    /**
+     * method of d
+     */
     public void methodD();
+
+
 }

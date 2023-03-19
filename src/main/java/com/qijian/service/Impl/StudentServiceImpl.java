@@ -89,4 +89,13 @@ public class StudentServiceImpl implements StudentService {
 
     }
 
+    /**
+     * 测试私有方法
+     * @return
+     */
+    private String  privateMethod(String str,Integer id){
+        return "我是私有方法";
     }
+
+
+}

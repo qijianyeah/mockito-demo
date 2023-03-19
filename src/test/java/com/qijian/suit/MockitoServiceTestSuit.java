@@ -1,6 +1,6 @@
 package com.qijian.suit;
 
-import com.qijian.service.Impl.StudentController2Test;
+import com.qijian.controller.StudentController2Test;
 import com.qijian.service.Impl.UserServiceImplTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
