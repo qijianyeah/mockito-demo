@@ -2,6 +2,7 @@ package com.qijian.service;
 
 import com.qijian.base.ResponseData;
 import com.qijian.po.User;
+import com.qijian.dto.UserDTO;
 
 import java.util.List;
 
@@ -13,6 +14,9 @@ public interface UserService {
      * @return
      */
     ResponseData<List<User>> listForLessThan(User user);
+
+    //    通过用户名获取用户列表信息
+    public List<UserDTO> getUsersByName(String userName);
 
     //    查询所有
     List<User> list();

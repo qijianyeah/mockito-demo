@@ -97,5 +97,10 @@ public class StudentServiceImpl implements StudentService {
         return "我是私有方法";
     }
 
+    public String methodE(Student student){
+        privateMethod("str",1);
+        return "privateMethod";
+    }
+
 
 }

@@ -1,5 +1,6 @@
 package com.qijian.mapper;
 import com.qijian.po.User;
+import com.qijian.dto.UserDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -19,4 +20,6 @@ public interface UserMapper {
     Integer deleteById(Integer id);
 
     List<User> listForLessThan(Integer age);
+
+    List<UserDTO> getUsers(String userName);
 }

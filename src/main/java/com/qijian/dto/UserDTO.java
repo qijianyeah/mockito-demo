@@ -1,4 +1,4 @@
-package com.qijian.vo;
+package com.qijian.dto;
 
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +9,7 @@ import lombok.Data;
  */
 @Data
 @Builder
-public class UserVO {
+public class UserDTO {
     /**
      * id
      */

@@ -54,5 +54,11 @@ public interface StudentService {
      */
     public void methodD();
 
+    /**
+     * invoking private method .
+     * method of e
+     */
+    public String methodE(Student student);
+
 
 }

@@ -4,17 +4,36 @@ import com.qijian.base.ResponseData;
 import com.qijian.mapper.UserMapper;
 import com.qijian.po.User;
 import com.qijian.service.UserService;
+import com.qijian.dto.UserDTO;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Slf4j
 @Service
 public class UserServiceImpl implements UserService {
 
     @Resource
     private UserMapper userMapper;
+
+    public List<UserDTO> getUsersByName(String userName){
+        List<UserDTO> userDtos = null;
+        try{
+            userDtos = userMapper.getUsers(userName);
+        }catch(DataAccessException e){
+            log.info("DataAccessException:{}",e.getMessage());
+        }
+        if(CollectionUtils.isEmpty(userDtos)){
+            return new ArrayList();
+        }
+        return userDtos;
+    }
 
 
     @Override
