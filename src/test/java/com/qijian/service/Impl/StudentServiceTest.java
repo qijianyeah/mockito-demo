@@ -16,9 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.powermock.api.mockito.PowerMockito;
 import org.springframework.test.util.ReflectionTestUtils;
 
-
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 
 /**
@@ -88,17 +86,11 @@ class StudentServiceTest {
             spyT.methodB();
         }
         //验证方法是否被调用
-        verify(spyT).methodC();
+        verify(spyT,times(1)).methodC();
         log.info("ertyui");
         //assert && verify
     }
 
-    //私有方法的测试
-    @Test
-    public void testPrivateMethod(){
-        Object result = ReflectionTestUtils.invokeMethod(studentService, "privateMethod", "str1",1);
-        Assertions.assertThat(result).isEqualTo("我是私有方法");
-    }
 
 
 

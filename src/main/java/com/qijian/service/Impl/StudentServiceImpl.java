@@ -90,15 +90,16 @@ public class StudentServiceImpl implements StudentService {
     }
 
     /**
-     * 测试私有方法
+     * 私有方法
      * @return
      */
-    private String  privateMethod(String str,Integer id){
+    private String   privateMethod(){
         return "我是私有方法";
     }
 
     public String methodE(Student student){
-        privateMethod("str",1);
+        String str = privateMethod();
+        System.out.println(str);
         return "privateMethod";
     }
 

@@ -16,7 +16,6 @@ import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 import org.springframework.dao.DataAccessException;
 import org.springframework.test.util.ReflectionTestUtils;
-import org.springframework.util.CollectionUtils;
 
 import java.util.*;
 
@@ -161,5 +160,6 @@ public class UserServiceImplTest {
         }
 
     }
+
 
 }
