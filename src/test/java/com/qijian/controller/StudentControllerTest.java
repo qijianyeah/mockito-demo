@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -20,8 +21,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
  * @author caijiapeng
  * @date 2023-03-17 16:07
  */
-@RunWith(MockitoJUnitRunner.class)
-public class StudentController2Test {
+//@RunWith(MockitoJUnitRunner.class) //报错：Unnecessary stubbings detected in test class: StudentControllerTest
+@RunWith(MockitoJUnitRunner.Silent.class)
+public class StudentControllerTest {
 
     @InjectMocks
     private StudentController studentController = new StudentController();
@@ -29,6 +31,7 @@ public class StudentController2Test {
     @Mock
     private StudentService fakeStudentService;
 
+    // 初始化MockMvc对象
     private final MockMvc mockMvc = MockMvcBuilders.standaloneSetup(studentController).build();
 
     private static Student student;
@@ -63,7 +66,7 @@ public class StudentController2Test {
     @Test
     public void testGetByNum() throws Exception {
         Student fakeStudent = Student.builder().id(1).num("002").classNum(4).dormitoryNum(202).userId(1).build();
-//        Mockito.when(fakeStudentService.getById(fakeStudent.getId())).thenReturn(fakeStudent);
+        Mockito.when(fakeStudentService.getById(fakeStudent.getId())).thenReturn(fakeStudent);
         mockMvc.perform(MockMvcRequestBuilders.get("/student/getByNum?num=002")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
@@ -76,7 +79,7 @@ public class StudentController2Test {
     @Test
     public void testGetById() throws Exception {
         Student fakeStudent = Student.builder().id(1).num("002").classNum(4).dormitoryNum(202).userId(1).build();
-//        Mockito.when(fakeStudentService.getByNum(fakeStudent.getNum())).thenReturn(fakeStudent);
+        Mockito.when(fakeStudentService.getByNum(fakeStudent.getNum())).thenReturn(fakeStudent);
         mockMvc.perform(MockMvcRequestBuilders.get("/student/getById?id=1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
@@ -89,7 +92,7 @@ public class StudentController2Test {
     @Test
     public void testSave() throws Exception {
         Student fakeStudent = Student.builder().id(1).num("002").classNum(4).dormitoryNum(202).userId(1).build();
-//        Mockito.when(fakeStudentService.getByNum(fakeStudent.getNum())).thenReturn(fakeStudent);
+        Mockito.when(fakeStudentService.getByNum(fakeStudent.getNum())).thenReturn(fakeStudent);
         mockMvc.perform(MockMvcRequestBuilders.post("/student/save")
                         .content(JSON.toJSONString(student))
                         .contentType(MediaType.APPLICATION_JSON))

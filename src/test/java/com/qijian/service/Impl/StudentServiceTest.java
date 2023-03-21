@@ -7,10 +7,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.powermock.api.mockito.PowerMockito;
 import org.springframework.test.util.ReflectionTestUtils;
 
@@ -21,9 +23,10 @@ import static org.mockito.Mockito.verify;
 
 /**
  * @author mahuahong
- * @Date 2023/3/16 23:59
+ * @date 2023/3/16 23:59
  */
 @Slf4j
+//@ExtendWith(MockitoExtension.class)
 class StudentServiceTest {
 
     //创建一个实例，简单的说是这个Mock可以调用真实代码的方法，
@@ -37,7 +40,7 @@ class StudentServiceTest {
     StudentMapper studentMapper;
 
     @BeforeEach
-    void setUp() throws Exception {
+    void setUp(){
         MockitoAnnotations.initMocks(this);
     }
 
@@ -45,12 +48,12 @@ class StudentServiceTest {
     @Test
     public void testGetById() {
         Student student = new Student();
-        student.setId(001);
-        student.setClassNum(01);
+        student.setId(1);
+        student.setClassNum(1);
         //when里面带的是条件，thenReturn里面表示的是返回结果
         Mockito.when(studentMapper.getById(Mockito.anyInt()))
                 .thenReturn(student);
-        Assertions.assertThat(studentService.getById(student.getId()).getClassNum()).isEqualTo(01);
+        Assertions.assertThat(studentService.getById(student.getId()).getClassNum()).isEqualTo(1);
     }
 
 
@@ -58,7 +61,7 @@ class StudentServiceTest {
     @Test
     public void testSave() {
         Student student = new Student();
-        student.setId(002);
+        student.setId(2);
         student.setDormitoryNum(505);
         //when里面带的是条件，thenReturn里面表示的是返回结果
         Mockito.when(studentMapper.save(student))

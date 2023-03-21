@@ -38,7 +38,6 @@ public class UserServiceImplTest {
     @BeforeClass
     public static void init() {
         ReflectionTestUtils.setField(testService, "userMapper", userMapper);
-//        Whitebox.setInternalState(testService,"userMapper",userMapper);
     }
 
     //针对所有测试，只执行一次，且必须为static void  运行junit测试类是最后一个被执行的方法
@@ -59,9 +58,6 @@ public class UserServiceImplTest {
      */
     @Test
     public void testListForLessThan_UserIsNull(){
-//        User user = User.builder().id(1).age(18).name("qijian").build();
-//        List<User> userList = new ArrayList<>();
-//        userList.add(user);
         Mockito.when(userMapper.listForLessThan(Mockito.anyInt())).thenReturn(new ArrayList<>());
         ResponseData<List<User>> responseData = testService.listForLessThan(null);
         Assertions.assertThat(responseData.getCode()).isEqualTo(500);
@@ -73,9 +69,6 @@ public class UserServiceImplTest {
      */
     @Test
     public void testListForLessThan_AgeIsNull(){
-//        User user = User.builder().id(1).age(18).name("qijian").build();
-//        List<User> userList = new ArrayList<>();
-//        userList.add(user);
         Mockito.when(userMapper.listForLessThan(Mockito.anyInt())).thenReturn(new ArrayList<>());
         User user1 = User.builder().name("qijian").build();
         ResponseData<List<User>> responseData = testService.listForLessThan(user1);
@@ -87,9 +80,6 @@ public class UserServiceImplTest {
      */
     @Test
     public void testListForLessThan_AgeIsIllegal(){
-//        User user = User.builder().id(1).age(18).name("qijian").build();
-//        List<User> userList = new ArrayList<>();
-//        userList.add(user);
         Mockito.when(userMapper.listForLessThan(Mockito.anyInt())).thenReturn(new ArrayList<>());
         User user1 = User.builder().name("qijian").age(121).build();
         ResponseData<List<User>> responseData = testService.listForLessThan(user1);
@@ -101,10 +91,6 @@ public class UserServiceImplTest {
      */
     @Test
     public void testListForLessThan_Ok(){
-        //User user = User.builder().id(1).age(18).name("qijian").build();
-//        List<User> userList = new ArrayList<>();
-//        userList.add(user);
-
         User user0 = User.builder().id(0).name("qijian").age(18).gender(1).build();
 
         //如果入参是自定义的类对象，则需要利用Mockito.any()来进行，也可以自己new出来一个新类来进行：
@@ -114,6 +100,7 @@ public class UserServiceImplTest {
         Assertions.assertThat(responseData.getCode()).isEqualTo(200);
     }
 
+    //===============================   PowerMockito   =========================================
 
     //覆盖除了Catch内的代码（先测试覆盖没有异常的代码）
     @Test
@@ -124,30 +111,21 @@ public class UserServiceImplTest {
         PowerMockito.when(userMapper.getUsers("test")).thenReturn(userDtos);
         Assertions.assertThat(userMapper.getUsers("test")).isEqualTo(userDtos);
         //以上覆盖除了Catch内的代码（先测试覆盖没有异常的代码）
+
+        List<UserDTO> result = testService.getUsersByName("test");
+
+        Assertions.assertThat(result).isEqualTo(userDtos);
     }
 
     // 测试抛出异常代码
-    @Test
-    public void testGetUsersByNameWithListIsNUll(){
-        //a.对异常打桩
-        DataAccessException exception = PowerMockito.mock(DataAccessException.class);
-        //b.模拟try内的方法，doThrow异常
-//        PowerMockito.doThrow(exception).when(userMapper.getUsers("test"));
-        PowerMockito.doThrow(exception).when(userMapper).getUsers("test");
-        //c.验证异常后返回的结果
-        Assertions.assertThat(CollectionUtils.isEmpty(userMapper.getUsers("test"))).isTrue();
-    }
-
     @Test
     public void testGetUsersByNameWithException() {
         DataAccessException exception = PowerMockito.mock(DataAccessException.class);
         // Arrange
         String userName = "testUser";
-        UserDTO userDto = UserDTO.builder().build();
-        userDto.setName(userName);
-        List<UserDTO> userDtos = Arrays.asList(userDto);
         UserMapper userMapperMock = PowerMockito.mock(UserMapper.class);
-        PowerMockito.when(userMapperMock.getUsers(userName)).thenThrow(exception);
+        //Stubbing void methods with exceptions
+        PowerMockito.when(userMapperMock.getUsers(userName)).thenThrow(NullPointerException.class);
         // Act
         List<UserDTO> result = testService.getUsersByName(userName);
         // Assert
@@ -155,7 +133,7 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void mock_element_test_05() {
+    public void mock_element_test() {
         LinkedList mockedList = PowerMockito.mock(LinkedList.class);
         PowerMockito.doThrow(new ArithmeticException()).when(mockedList).clear();
 

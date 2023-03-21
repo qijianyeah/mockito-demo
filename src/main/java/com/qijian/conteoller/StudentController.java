@@ -5,15 +5,17 @@ import com.qijian.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
+
 /**
  * @author mahuahong
- * @Date 2023/3/16 23:58
+ * @date 2023/3/16 23:58
  */
 @RestController
 @RequestMapping("/student")
 public class StudentController {
 
-    @Autowired
+    @Resource
     private StudentService studentService;
 
     @GetMapping("/getById")//http://127.0.0.1:8100/student/getById?id=1

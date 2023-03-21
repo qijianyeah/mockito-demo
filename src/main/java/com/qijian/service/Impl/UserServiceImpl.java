@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
         List<UserDTO> userDtos = null;
         try{
             userDtos = userMapper.getUsers(userName);
-        }catch(DataAccessException e){
+        }catch(Exception e){
             log.info("DataAccessException:{}",e.getMessage());
         }
         if(CollectionUtils.isEmpty(userDtos)){
