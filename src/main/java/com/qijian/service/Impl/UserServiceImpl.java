@@ -6,7 +6,6 @@ import com.qijian.po.User;
 import com.qijian.service.UserService;
 import com.qijian.dto.UserDTO;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 

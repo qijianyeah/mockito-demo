@@ -5,6 +5,7 @@ import com.qijian.po.Student;
 import com.qijian.po.User;
 import com.qijian.service.StudentService;
 import com.qijian.service.UserService;
+import com.qijian.util.XxxUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -103,5 +104,12 @@ public class StudentServiceImpl implements StudentService {
         return "privateMethod";
     }
 
-
+    /**
+     * 静态方法
+     * @return
+     */
+    public static boolean staticMethod(boolean bool) {
+        boolean b = XxxUtils.xxxMethod(bool);
+        return b;
+    }
 }

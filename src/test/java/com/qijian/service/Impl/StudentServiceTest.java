@@ -12,9 +12,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.powermock.api.mockito.PowerMockito;
-import org.springframework.test.util.ReflectionTestUtils;
 
 import static org.mockito.Mockito.*;
 
@@ -55,7 +52,6 @@ class StudentServiceTest {
     }
 
 
-    //无效单元测试
     @Test
     public void testSave() {
         Student student = new Student();
