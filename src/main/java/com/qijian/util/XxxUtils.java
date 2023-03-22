@@ -12,7 +12,7 @@ import java.io.File;
 public class XxxUtils {
 
     public static boolean xxxMethod(boolean bool) {
-
+        log.info("xxxMethod");
         return bool;
     }
 

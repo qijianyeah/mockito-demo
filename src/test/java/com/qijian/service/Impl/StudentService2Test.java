@@ -37,15 +37,24 @@ public class StudentService2Test {
     }
 
     @Test
-    public void testStaticMethod(){
+    public void testStaticMethod_withXxxMethod_returnFalse(){
 //        模拟静态方法调用
         PowerMockito.mockStatic(XxxUtils.class);
         // mock掉对Redis的静态调用
-        PowerMockito.when(XxxUtils.xxxMethod(false)).thenReturn(false);
-        boolean b = StudentServiceImpl.staticMethod(false);
+        PowerMockito.when(XxxUtils.xxxMethod(true)).thenReturn(false);
+        boolean b = StudentServiceImpl.staticMethod(true);
         Assertions.assertEquals(b,false);
     }
 
+    @Test
+    public void testStaticMethod_withXxxMethod_returnTrue(){
+//        模拟静态方法调用
+        PowerMockito.mockStatic(XxxUtils.class);
+        // mock掉对Redis的静态调用
+        PowerMockito.when(XxxUtils.xxxMethod(Mockito.anyBoolean())).thenReturn(true);
+        boolean b = StudentServiceImpl.staticMethod(false);
+        Assertions.assertEquals(b,true);
+    }
 
 
 }
