@@ -637,8 +637,8 @@ public class MockitoServiceTestSuit {
 生成代码的插件
 
 1. idea自带的生成功能
-2. testme插件，这个之间泽豪介绍过
-3. squaretest插件，这里就不展开讲了，待会佳琳会讲
+2. testme插件
+3. squaretest插件，这里就不展开讲了
 4. chatgpt
 
 本地查看覆盖率
