@@ -12,6 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import static org.mockito.Mockito.*;
 
@@ -49,6 +50,13 @@ class StudentServiceTest {
         Mockito.when(studentMapper.getById(Mockito.anyInt()))
                 .thenReturn(student);
         Assertions.assertThat(studentService.getById(student.getId()).getClassNum()).isEqualTo(1);
+    }
+
+    //测试私有方法
+    @Test
+    public void testPrivateMethod(){
+        Object result = ReflectionTestUtils.invokeMethod(studentService, "privateMethod");
+        Assertions.assertThat(result).isEqualTo("我是私有方法");
     }
 
 
