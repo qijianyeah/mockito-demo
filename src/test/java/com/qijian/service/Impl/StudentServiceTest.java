@@ -76,14 +76,14 @@ class StudentServiceTest {
         //StudentService t = new StudentServiceImpl();
         //StudentService spyT = spy(t);
         StudentService spyT = spy(studentService);
-        //第一次，第二次 调用methodA时，分别返回0，1，2
+        //第一次，第二次 调用methodA时，分别返回0，1
         Mockito.when(spyT.methodA()).thenReturn(0,1);
         for(int i=0; i<=1; i++){
             spyT.methodB();
         }
         //验证方法是否被调用
         verify(spyT,times(1)).methodC();
-        log.info("ertyui");
+        log.info("测试结束");
         //assert && verify
     }
 

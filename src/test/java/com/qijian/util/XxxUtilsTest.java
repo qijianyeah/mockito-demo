@@ -20,9 +20,9 @@ import org.powermock.modules.junit4.PowerMockRunner;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ XxxUtils.class })
 public class XxxUtilsTest {
-    
-    @InjectMocks
-    private XxxUtils xxxUtils = new XxxUtils();
+
+//    @InjectMocks
+//    private XxxUtils xxxUtils = new XxxUtils();
 
     @Test
     public void testXxxMethod(){

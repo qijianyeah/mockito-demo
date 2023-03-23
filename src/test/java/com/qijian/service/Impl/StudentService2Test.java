@@ -13,8 +13,9 @@ import org.mockito.stubbing.OngoingStubbing;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-
-import static org.mockito.AdditionalMatchers.eq;
+import org.powermock.modules.testng.PowerMockObjectFactory;
+import org.testng.IObjectFactory;
+import org.testng.annotations.ObjectFactory;
 
 
 /**
@@ -25,7 +26,7 @@ import static org.mockito.AdditionalMatchers.eq;
 @PrepareForTest({ StudentServiceImpl.class,XxxUtils.class })
 public class StudentService2Test {
 
-    @InjectMocks
+    @InjectMocks//spy方法会走真实的方法，而mock对象不会，spy()方法的参数是对象的实例，mock的参数是class
     private StudentService studentService = PowerMockito.spy(new StudentServiceImpl());
 
 
@@ -38,7 +39,7 @@ public class StudentService2Test {
 
     @Test
     public void testStaticMethod_withXxxMethod_returnFalse(){
-//        模拟静态方法调用
+//      为类的所有方法启用静态模拟。
         PowerMockito.mockStatic(XxxUtils.class);
         // mock掉对Redis的静态调用
         PowerMockito.when(XxxUtils.xxxMethod(true)).thenReturn(false);
@@ -48,7 +49,7 @@ public class StudentService2Test {
 
     @Test
     public void testStaticMethod_withXxxMethod_returnTrue(){
-//        模拟静态方法调用
+//      为类的所有方法启用静态模拟。
         PowerMockito.mockStatic(XxxUtils.class);
         // mock掉对Redis的静态调用
         PowerMockito.when(XxxUtils.xxxMethod(Mockito.anyBoolean())).thenReturn(true);
